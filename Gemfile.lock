@@ -141,6 +141,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable (= 2.2.8)
   capybara (= 1.1.2)
   coffee-rails (= 3.2.2)
   jquery-rails (= 2.0.0)
