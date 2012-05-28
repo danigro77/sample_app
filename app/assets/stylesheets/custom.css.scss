@@ -8,20 +8,11 @@ MIXINS, VARIABLES, ETC
 $grayMediumLight: #eaeaea;
 
 @mixin box_sizing {
-<<<<<<< HEAD
    -moz-box-sizing: border-box;
    -webkit-box-sizing: border-box;
    box-sizing: border-box;
 }
 
-=======
-   -moz-box-sixing: border-box;
-   -webkit-box-sixing: border-box;
-   box-sixing:    border-box;
-}
-
-
->>>>>>> sign-up
 /***********************
       UNIVERSAL 
 ***********************/
@@ -127,19 +118,6 @@ footer            {
 }
 
 /***********************
-<<<<<<< HEAD
-     MISCELLANEOUS 
-***********************/
-
-.debug_dumb          {
-   clear:            both;
-   float:            left;
-   width:            100%;
-   margin-top:       45px;
-   @include box_sizing;
-}
-
-=======
     SIDEBAR 
 ***********************/
 
@@ -215,4 +193,3 @@ input, textarea, select {
 
 
 
->>>>>>> sign-up
