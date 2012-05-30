@@ -44,6 +44,13 @@ describe "User Pages" do
             end 
 
             it { should_not have_link('delete', href: user_path(admin)) }
+
+            describe "should not be able to delete himself" do
+               before do
+                  delete user_path(admin)
+               end
+               it { should redirect_to(users_path) }
+            end
          end
       end
    end
@@ -128,7 +135,7 @@ describe "User Pages" do
             fill_in "Name",                  with: "Example User"
             fill_in "Email",                 with: "user@example.com"
             fill_in "Password",              with: "foobar"
-            fill_in "Confirmation",          with: "foobar"
+            fill_in "Confirm Password",          with: "foobar"
          end
       
          it "should create an user" do
@@ -145,12 +152,4 @@ describe "User Pages" do
          end
       end
    end
-
-#  describe "GET /user_pages" do
-#    it "works! (now write some real specs)" do
-#      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-#      get user_pages_path
-#      response.status.should be(200)
-#    end
-#  end
 end

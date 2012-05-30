@@ -43,6 +43,14 @@ describe "Authentication" do
 
    end
 
+# user isn't signed in ----
+   describe "user isn't signed in" do
+      before { visit root_path }
+
+      it { should_not have_link('Profile',         href: "#") }
+      it { should_not have_link('Settings',        href: "#") }
+   end
+
 # authorization -------   
    describe "authorization" do
 
@@ -51,19 +59,30 @@ describe "Authentication" do
          let(:user) { FactoryGirl.create(:user) }
       
          describe "when attempting to visit a protected page" do
-           before do
-             visit edit_user_path(user)
-             fill_in "Email",    with: user.email
-             fill_in "Password", with: user.password
-             click_button "Sign in"
-           end
+            before do
+               visit edit_user_path(user)
+               sign_in(user) 
+            end
 
-           describe "after signing in" do
+            describe "after signing in" do
 
-             it "should render the desired protected page" do
-               page.should have_selector('title', text: 'Edit user')
-             end
-           end
+               it "should render the desired protected page" do
+                  page.should have_selector('title', text: 'Edit user')
+               end
+
+               describe " when signing in again" do
+                  before do
+                     visit signin_path
+                     sign_in(user)
+                  end
+               end  
+
+               it "should render the default (profile) page" do
+                  # didn't work without it... wrong test now????
+                  sign_in(user)
+                  page.should have_selector('title', text: user.name)
+               end
+            end
          end
       
          describe "in the Users controller" do
