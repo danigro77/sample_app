@@ -4,8 +4,6 @@ describe "Authentication" do
 
    subject { page }
 
-# signin --------
-
    describe "signin" do
       before { visit signin_path }
 
@@ -22,7 +20,6 @@ describe "Authentication" do
          end
       end
 
-#--
       describe "with valid information" do
          let(:user) { FactoryGirl.create(:user) }
          before {  sign_in user }
@@ -42,49 +39,41 @@ describe "Authentication" do
       end
 
    end
-
-# user isn't signed in ----
-   describe "user isn't signed in" do
-      before { visit root_path }
-
-      it { should_not have_link('Profile',         href: "#") }
-      it { should_not have_link('Settings',        href: "#") }
-   end
-
-# authorization -------   
+   
    describe "authorization" do
 
-#--
       describe "for non-signed-in users" do
          let(:user) { FactoryGirl.create(:user) }
-      
-         describe "when attempting to visit a protected page" do
-            before do
-               visit edit_user_path(user)
-               sign_in(user) 
+
+         describe "in the Microposts controller" do
+
+            describe "submitting to the create action" do
+               before { post microposts_path }
+               specify { response.should redirect_to(signin_path) }
             end
 
-            describe "after signing in" do
-
-               it "should render the desired protected page" do
-                  page.should have_selector('title', text: 'Edit user')
-               end
-
-               describe " when signing in again" do
-                  before do
-                     visit signin_path
-                     sign_in(user)
-                  end
-               end  
-
-               it "should render the default (profile) page" do
-                  # didn't work without it... wrong test now????
-                  sign_in(user)
-                  page.should have_selector('title', text: user.name)
-               end
-            end
+         describe "submitting to the destroy action" do
+            before { delete micropost_path(FactoryGirl.create(:micropost)) }
+            specify { response.should redirect_to(signin_path) }
          end
-      
+      end
+
+         describe "when attempting to visit a protected page" do
+           before do
+             visit edit_user_path(user)
+             fill_in "Email",    with: user.email
+             fill_in "Password", with: user.password
+             click_button "Sign in"
+           end
+
+           describe "after signing in" do
+
+             it "should render the desired protected page" do
+               page.should have_selector('title', text: 'Edit user')
+             end
+           end
+         end
+
          describe "in the Users controller" do
 
             describe "visiting the edit page" do
@@ -99,12 +88,11 @@ describe "Authentication" do
 
             describe "visiting the user index" do
                before { visit users_path }
-               it { should have_selector('title', text: 'Sign in') }
+               it { should_not have_selector('title', text: 'All users') }
             end
          end
       end
 
-#--
       describe "as wrong user" do
          let(:user) { FactoryGirl.create(:user) }
          let(:wrong_user) { FactoryGirl.create(:user, email: "wrong@example.com") }
@@ -120,19 +108,5 @@ describe "Authentication" do
            specify { response.should redirect_to(root_path) }
          end
       end
-
-#--
-      describe "as non-admin user" do
-         let(:user)        { FactoryGirl.create(:user) }
-         let(:non_admin)   { FactoryGirl.create(:user) }
-
-         before { sign_in non_admin } 
-
-         describe "submitting a DELETE request to the Users#destroy action" do
-            before { delete user_path(user) }
-            specify { response.should redirect_to(root_path) }
-         end
-      end
-
    end
-end  
+end
