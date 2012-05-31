@@ -16,8 +16,8 @@ describe "User Pages" do
       it { should have_selector('title',  text: "All users") }
 
       describe "pagination" do
-         # does not work
-         # it { should have_selector('div.pagination') }
+         # does not work - aren't there enough user for this test???
+       #  it { should have_selector('div.pagination') }
 
          it "should list each user" do
             User.paginate(page: 1).each do |user|
@@ -26,7 +26,7 @@ describe "User Pages" do
          end
       end
 
-      describe "delete links" do
+      describe "delete user links" do
 
          it { should_not have_link('delete') }
 
