@@ -36,5 +36,6 @@ describe RelationshipsController do
          xhr :delete, :destroy, id: relationship.id
          response.should be_success
       end
+      
    end
 end

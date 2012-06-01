@@ -31,6 +31,15 @@ describe "User Pages" do
          it { should have_selector('h3', text: 'Followers') }
          it { should have_link(user.name, href: user_path(user)) }
       end
+   
+      it "should destroy associated relationships" do
+         relationships = user.relationships
+         user.destroy
+         relationships.each do |relationship|
+            Relationship.find_by_id(relationship.id).should be_nil
+         end
+      end
+
    end   
    
 
@@ -47,7 +56,7 @@ describe "User Pages" do
 
       describe "pagination" do
          # does not work - aren't there enough user for this test???
-       #  it { should have_selector('div.pagination') }
+         # it { should have_selector ('div.pagination') }
 
          it "should list each user" do
             User.paginate(page: 1).each do |user|
