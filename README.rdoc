@@ -5,7 +5,8 @@ This is a sample application for
 by [Michael Hartl] (http://michaelhartl.com/)
 
 
-# My Experiences
+[*My Experiences*]
+==================
 
 [*June 1st, 2012*]
 After reading the RoR tutorial for the first time I can say, that I really liked it. Everything was well explained and I am  quite confident, that I can become a skillful Rails developer. It was fun seeing the page build up part by part.
