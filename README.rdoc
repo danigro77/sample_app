@@ -13,3 +13,4 @@ I was able to do most of the exercises after reading each chapter, but I am goin
 My next steps are going to browse over the book a second time and give the exercises I could not complete at this time a second shot. I also want to do Rails for Zomies again, which I already did a few months ago. After this RoR tutorial things are much clearer now.
 I am looking forward talking to you and hopefully attending Dev Bootcamp.
 
+P.S. When I checked my HerokuApp (https://danis-sample-app.herokuapp.com/) again, I noticed, that my JavaScript Counter did not work (was not precompiled, I tried bundle exec rake assets:precompile on my local machine, but that didn't help), so I moved it out of my sample_app directory.
