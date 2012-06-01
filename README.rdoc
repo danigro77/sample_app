@@ -5,10 +5,10 @@ This is a sample application for
 by [Michael Hartl] (http://michaelhartl.com/)
 
 
-[*My Experiences*]
+[My Experiences]
 ==================
 
-[*June 1st, 2012*]
+[June 1st, 2012]
 After reading the RoR tutorial for the first time I can say, that I really liked it. Everything was well explained and I am  quite confident, that I can become a skillful Rails developer. It was fun seeing the page build up part by part.
 I was able to do most of the exercises after reading each chapter, but I am going to have a second look at them. I am still a little bit confused where to find the different parts of the application, but I assume that will get better the more code I write.Although I have to admit that I still have to get used to the syntax of RSpec tests. But this is nothing I'm not able to learn with doing some more practice. I even improved my skills in debugging. Since I wrote most of the code by hand to be more aware of what is happening, I had some typos here and there and therefore spent quite some time hunting them. At the end I found them much faster - but not all of them. There is one I cannot get out of my head: my test for the pagination always failed.
 My next steps are going to browse over the book a second time and give the exercises I could not complete at this time a second shot. I also want to do Rails for Zomies again, which I already did a few months ago. After this RoR tutorial things are much clearer now.
